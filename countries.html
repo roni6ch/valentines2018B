@@ -1,0 +1,57 @@
+
+<!-- SPINNER -->
+<div class="sk-cube-grid">
+    <div class="sk-cube sk-cube1"></div>
+    <div class="sk-cube sk-cube2"></div>
+    <div class="sk-cube sk-cube3"></div>
+    <div class="sk-cube sk-cube4"></div>
+    <div class="sk-cube sk-cube5"></div>
+    <div class="sk-cube sk-cube6"></div>
+    <div class="sk-cube sk-cube7"></div>
+    <div class="sk-cube sk-cube8"></div>
+    <div class="sk-cube sk-cube9"></div>
+</div>
+
+<div id="gallery"></div>
+
+<script>
+
+    loadCountries(window.albumSize,window.album);
+    function loadCountries(imagesNum,country){
+        var html = "";
+        $("#gallery").html("");
+        for (var i = 1; i <= imagesNum; i++) {
+            html += '<li><img src="images/'+country+'/1 (' + i + ').jpg" /></li>';
+        }
+        $("#gallery").append(html);
+    }
+
+    $(function() {
+        setTimeout(function(){
+            $('#gallery').lightSlider({
+                onBeforeStart: function (el) {
+                    $(".sk-cube-grid").show();
+                    $( "#gallery" ).animate({
+                        opacity:1
+                    }, 1500 );
+                },
+                onSliderLoad: function (el) {
+                    $(".sk-cube-grid").hide();
+                },
+                auto:true,
+                loop:true,
+                slideMove:2,
+                enableDrag: true,
+                item:1,
+                slideMargin:0,
+            });
+        }, 1000);
+        $(".poptrox-popup > h1").html("");
+        $(".poptrox-popup").prepend('<h1 id="albumTitle" style="text-transform: capitalize;position: absolute; top: 10px;left: 0;right: 0;margin: 0 auto;z-index: 99999;"></h1>')
+
+        $("#albumTitle").html(window.album);
+
+
+
+    });
+</script>
